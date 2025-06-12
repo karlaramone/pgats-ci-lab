@@ -13,28 +13,31 @@ on:
 jobs:
   e2e-tests:
 
-  # maquina que o job vai executar
-  runs-on: ubuntu-latest
-  
-  # passos do script de build
-  steps:
-  
-  # clone do projeto
-  - uses: actions/checkout@v4  
+    # maquina que o job vai executar
+    runs-on: ubuntu-latest
 
-  # instalação do node
-  - uses: actions/setup-node@v4
-      with:
-       node-version: 22.x
+    # passos do script de build
+    steps:
+      # clone do projeto
+      - uses: actions/checkout@v4
 
-  # instalação yarn
-  - name: Instalando  yarn
-    run: npm install -g yarn
+      # instalacao do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
 
-  # instalação das dependencias
-  - name: Instalando dependencias
-    run: yarn
+      # instalacao do yarn
+      - name: Instalando yarn
+        run: npm install -g yarn
 
-  # executar os testes e2e
-  - name: Executando Testes E2E
-    run: yarn run e2e  
+      # instalacao das dependencias
+      - name: Instalando dependencias
+        run: yarn
+
+      # instalacao do Playwrigth
+      - name: Instalando Playwright
+        run: yarn playwright install
+
+      # executar os testes e2e
+      - name: Executando testes e2e
+        run: yarn run e2e
